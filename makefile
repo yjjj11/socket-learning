@@ -12,11 +12,11 @@ submodules:
 	make -C socket
 # 编译服务器
 my-first-server: my-first-server.cpp submodules
-	g++ -o my-first-server my-first-server.cpp $(INCLUDEDIR) $(LIBDIR) $(LDFLAGS) -lsocket -lLogger
+	g++ -o my-first-server my-first-server.cpp $(INCLUDEDIR) $(LIBDIR) $(LDFLAGS) -lsocket -lLogger -lserver_socket
 
 # 编译客户端
 my-first-client: my-first-client.cpp submodules
-	g++ -o my-first-client my-first-client.cpp $(INCLUDEDIR) $(LIBDIR) $(LDFLAGS) -lsocket -lLogger
+	g++ -o my-first-client my-first-client.cpp $(INCLUDEDIR) $(LIBDIR) $(LDFLAGS) -lsocket -lLogger -lclient_socket
 
 clean:
 	rm -f my-first-client my-first-server

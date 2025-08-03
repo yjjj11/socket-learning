@@ -6,6 +6,7 @@
 #include<netinet/in.h>
 #include<cstring>
 #include"socket/socket.h"
+#include"socket/server_socket.h"
 using namespace yazi::socket;
 using namespace yazi::utility;
 using namespace std;
@@ -13,15 +14,8 @@ using namespace std;
 int main()
 {
 	Logger::instance()->open("./server.log");
-    //1.创建socket
-    Socket server;
-
-    //2.绑定socket
-    string ip = "127.0.0.1";
-    int port = 8080;
-    server.bind(ip,port);
-    //3.创建监听函数
-    server.listen(1024);
+   
+    ServerSocket server("127.0.0.1",8080);  
     while(1)
     {
         //4.等待接收客户端连接

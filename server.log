@@ -14,3 +14,8 @@
 2025-08-03 13:17:19 [DEBUG] socket.cpp:117: socket closed
 2025-08-03 13:19:40 [DEBUG] socket.cpp:95: socket accept success! confd=5
 2025-08-03 13:19:40 [DEBUG] socket.cpp:117: socket closed
+2025-08-03 17:16:54 [DEBUG] socket.cpp:14: create socket success! sockfd=4
+2025-08-03 17:16:54 [DEBUG] socket.cpp:45: socket bind success! ip=127.0.0.1, port=8080
+2025-08-03 17:16:54 [DEBUG] socket.cpp:60: socket listen success! backlog=1024
+2025-08-03 17:17:13 [DEBUG] socket.cpp:95: socket accept success! confd=5
+2025-08-03 17:17:13 [DEBUG] socket.cpp:117: socket closed

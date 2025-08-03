@@ -153,6 +153,7 @@ bool Socket::set_recv_buffer(int size)
 		
 		return false;
 	}
+	return true;
 
 }
 bool Socket::set_linger(bool active,int seconds)
@@ -162,7 +163,7 @@ bool Socket::set_linger(bool active,int seconds)
 
 	l.l_onoff=active?1:0;
 	l.l_linger=seconds;
-	if(setsockopt(m_sockfd,SOL_SOCK,SO_LINGER,&l,sizeof(l))<0)
+	if(setsockopt(m_sockfd,SOL_SOCKET,SO_LINGER,&l,sizeof(l))<0)
 	{
 
 		error("socket set_linger failed   error=%d,errmsg=%s",errno,strerror(errno));
@@ -191,5 +192,5 @@ bool Socket::set_reuseaddr()
 		error("socket set_reuseaddr failed   error=%d,errmsg=%s",errno,strerror(errno));
 		return false;
 	}
-	return 1;
+	return true;
 }

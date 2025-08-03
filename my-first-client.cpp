@@ -1,4 +1,5 @@
 #include<socket.h>
+#include"client_socket.h"
 using namespace yazi::utility;
 using namespace yazi::socket;
 using namespace std;
@@ -7,13 +8,7 @@ int main()
 	Logger::instance()->open("./client.log");
 	Logger::instance()->max(1024);
 	//1.创建socket
-        Socket client;
-	
-	//2.连接服务端
-	string ip="127.0.0.1";
-	int port=8080;
-        client.connect(ip,port);
-
+	ClientSocket client("127.0.0.1",8080);
 	//3.向服务端发送数据
 	string data="hello world";
         client.send(data.c_str(),data.size());
