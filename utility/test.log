@@ -1,0 +1,4 @@
+2025-08-02 22:03:16 ERROR main.cpp:12 error message
+2025-08-02 22:03:16 FATAL main.cpp:15 fatal message
+2025-08-02 22:29:22 DEBUG main.cpp:11 hello world
+2025-08-02 22:29:22 DEBUG main.cpp:12 name is jack,age is 18

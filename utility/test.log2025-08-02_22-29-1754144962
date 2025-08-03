@@ -1,0 +1,4 @@
+2025-08-02 22:29:22 ERROR main.cpp:13 error message
+2025-08-02 22:29:22 INFO main.cpp:14 info message
+2025-08-02 22:29:22 WARN main.cpp:15 warn message
+2025-08-02 22:29:22 FATAL main.cpp:16 fatal message
