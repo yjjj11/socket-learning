@@ -117,3 +117,79 @@ void Socket::close() {
         debug("socket closed");
     }
 }
+bool Socket::set_non_blocking()
+{
+	int flags=fcntl(m_sockfd,F_GETFL,0);
+	if(flags<0)
+	{
+		error("socket set_non_blocking failed   error=%d,errmsg=%s",errno,strerror(errno));
+		return false;
+	}
+	flags|=O_NONBLOCK;
+	if(fcntl(m_sockfd,F_SETFL,flags)<0)
+	{
+
+		error("socket set_non_blocking failed   error=%d,errmsg=%s",errno,strerror(errno));
+		return false;
+	}
+	return true;
+}
+bool Socket::set_send_buffer(int size)
+{
+	int buff_size=size;
+	if(setsockopt(m_sockfd,SOL_SOCKET,SO_SNDBUF,&buff_size,sizeof(buff_size))<0)
+	{
+		error("socket set_send_buffer failed   error=%d,errmsg=%s",errno,strerror(errno));
+		return false;
+	}
+	return true;
+}
+bool Socket::set_recv_buffer(int size)
+{
+	int buff_size=size;
+	if(setsockopt(m_sockfd,SOL_SOCKET,SO_RCVBUF,&buff_size,sizeof(buff_size))<0)
+	{
+		error("socket set_recv_buffer failed   error=%d,errmsg=%s",errno,strerror(errno));
+		
+		return false;
+	}
+
+}
+bool Socket::set_linger(bool active,int seconds)
+{
+	struct linger l;
+	memset(&l,0,sizeof(l));
+
+	l.l_onoff=active?1:0;
+	l.l_linger=seconds;
+	if(setsockopt(m_sockfd,SOL_SOCK,SO_LINGER,&l,sizeof(l))<0)
+	{
+
+		error("socket set_linger failed   error=%d,errmsg=%s",errno,strerror(errno));
+		return false;
+	}
+	return 1;
+}
+bool Socket::set_keepalive()
+{
+	int flag=1;
+	if(setsockopt(m_sockfd,SOL_SOCKET,SO_KEEPALIVE,&flag,sizeof(flag))<0)
+	{
+	
+		error("socket set_keepalive failed   error=%d,errmsg=%s",errno,strerror(errno));
+		return false;
+	}
+	return 1;
+}
+bool Socket::set_reuseaddr()
+{
+	
+	int flag=1;
+	if(setsockopt(m_sockfd,SOL_SOCKET,SO_REUSEADDR,&flag,sizeof(flag))<0)
+	{
+	
+		error("socket set_reuseaddr failed   error=%d,errmsg=%s",errno,strerror(errno));
+		return false;
+	}
+	return 1;
+}

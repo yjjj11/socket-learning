@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<fcntl.h>
 #include<arpa/inet.h>
 #include<cstring>
 #include<unistd.h>
@@ -25,6 +26,12 @@ namespace yazi
 			int send(const char*buf,int len);
 			int recv(char* buf,int len);
 			void close();
+
+			bool set_non_blocking();
+			bool set_send_buffer(int size);
+			bool set_recv_buffer(int size);
+			bool set_linger(bool active,int seconds);
+			bool set_keepalive();
 		protected:
 			string m_ip;
 			int m_port;
